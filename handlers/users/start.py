@@ -1,14 +1,11 @@
-from aiogram.dispatcher import FSMContext
 from aiogram import types
-from aiogram.dispatcher.filters.builtin import CommandStart
-
 from data.config import CHANNELS
 from keyboards.inline.convertor_btns import check_button_subs
 from loader import dp, db, bot
 from utils.misc.check_subs import check
 
 
-@dp.message_handler(commands=['start'])
+@dp.message_handler(commands=['start'],state='*')
 async def show_channels(message: types.Message):
     id = message.from_user.id
     fullname = message.from_user.full_name
