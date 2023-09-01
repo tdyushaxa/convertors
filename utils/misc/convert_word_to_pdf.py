@@ -2,7 +2,6 @@ import sys
 import subprocess
 import re
 
-
 def convert_to(folder, source, timeout=None):
     args = [libreoffice_exec(), '--headless', '--convert-to', 'pdf', '--outdir', folder, source]
 

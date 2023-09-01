@@ -10,6 +10,10 @@ convertor_btn = ReplyKeyboardMarkup(
             KeyboardButton(text='Image  ➡️ text'),
             KeyboardButton(text='Image ➡️ Pdf')
         ],
+        [
+            KeyboardButton(text='PDF ➡️ Get image'),
+            KeyboardButton(text='Excel ➡️ PDF')
+        ]
     ],
     resize_keyboard=True
 )
@@ -33,6 +37,23 @@ convert_word = ReplyKeyboardMarkup(
     resize_keyboard=True
 )
 
+get_images_key = ReplyKeyboardMarkup(
+    keyboard=[
+        [
+            KeyboardButton(text='Get Image')
+        ],
+    ],
+    resize_keyboard=True
+)
+
+ex_pdf_conv = ReplyKeyboardMarkup(
+    keyboard=[
+        [
+            KeyboardButton(text='Converor Pdf')
+        ],
+    ],
+    resize_keyboard=True
+)
 
 back_button = ReplyKeyboardMarkup(
     keyboard=[
@@ -52,7 +73,6 @@ get_text = ReplyKeyboardMarkup(
     resize_keyboard=True
 )
 
-
 get_pdf = ReplyKeyboardMarkup(
     keyboard=[
         [
@@ -63,3 +83,39 @@ get_pdf = ReplyKeyboardMarkup(
 )
 
 
+
+cencelbtn = ReplyKeyboardMarkup(
+    keyboard=[
+        [
+            KeyboardButton(text="Bekor qilish.")
+        ]
+    ],
+    resize_keyboard=True
+)
+
+
+agree = ReplyKeyboardMarkup(
+    keyboard=[
+        [
+            KeyboardButton(text='Ha'),
+            KeyboardButton(text="Yo'q"),
+        ],
+    ],
+    resize_keyboard=True
+)
+
+adminpanelbtn = ReplyKeyboardMarkup(
+    keyboard=[
+        [
+            KeyboardButton(text="📊 Statistika"),
+            KeyboardButton(text="📤 Tarqatish"),
+        ],
+        [
+            KeyboardButton(text="Xabar yuborish")
+        ],
+        [
+            KeyboardButton(text="✅ Majburiy obuna")
+        ],
+    ],
+    resize_keyboard=True
+)

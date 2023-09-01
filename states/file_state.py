@@ -14,3 +14,10 @@ class ImageTotext(StatesGroup):
 
 class ImageTopdf(StatesGroup):
     image = State()
+
+
+class ImageToGet_text(StatesGroup):
+    file = State()
+
+class Excel_to_pdf_state(StatesGroup):
+    file = State()
