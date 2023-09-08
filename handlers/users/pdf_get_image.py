@@ -1,4 +1,5 @@
 import os
+import time
 
 from aiogram import types
 from aiogram.dispatcher import FSMContext
@@ -16,6 +17,7 @@ async def get_images(msg: types.Message):
     await ImageToGet_text.file.set()
     await msg.answer('<b>📃 PDF file yuboring! Men sizga PDF filedan rasmlarni olib beraman.</b>')
     await msg.answer(text='Bot hozirgi holatida faqat 📃 PDF  qabul qiladi!!!', reply_markup=back_button)
+    time.sleep(2)
 
 
 @dp.message_handler(content_types='document', state=ImageToGet_text.file)
@@ -25,6 +27,7 @@ async def set_images(msg: types.Message, state: FSMContext):
     try:
         if file_name.endswith('.pdf'):
             file_id = msg.document.file_id
+            time.sleep(3)
             await bot.download_file_by_id(file_id=file_id, destination=f'{msg.from_user.id}.pdf')
             await msg.answer('✅ File qabul qilindi', reply_markup=get_images_key)
             await state.finish()
@@ -46,6 +49,7 @@ async def converter_get_image(msg: types.Message):
             for image in page.images.keys():
                 raw_image = page.images[image]
                 pdf_image = PdfImage(raw_image)
+                time.sleep(3)
                 pdf_get_image = pdf_image.extract_to(fileprefix=f"{msg.chat.id}")
                 with open(f'{msg.chat.id}.jpg', 'rb') as file:
                     await msg.answer_photo(file, caption=pdf_page.filename, reply_markup=ReplyKeyboardRemove())

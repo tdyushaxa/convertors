@@ -1,5 +1,6 @@
 from aiogram import types
 from data.config import CHANNELS
+from keyboards.default.convert_button import convertor_btn
 from keyboards.inline.convertor_btns import check_button_subs
 from loader import dp, db, bot
 from utils.misc.check_subs import check
@@ -41,5 +42,5 @@ async def checker(call: types.CallbackQuery):
             result += (f"<b>{channel.title}</b> kanaliga obuna bo'lmagansiz. "
                        f"<a href='{invite_link}'>Obuna bo'ling</a>\n\n")
 
-    await call.message.answer(result, disable_web_page_preview=True)
+    await call.message.answer(result, reply_markup=convertor_btn,disable_web_page_preview=True)
 

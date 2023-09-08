@@ -1,4 +1,5 @@
 import os
+import time
 
 from aiogram import types
 from aiogram.dispatcher import FSMContext
@@ -19,6 +20,7 @@ async def bot_start(message: types.Message):
                          parse_mode='HTML')
 
     await FileState.file.set()
+    time.sleep(2)
 
 
 
@@ -35,6 +37,7 @@ async def set_data(msg: types.Message, state: FSMContext):
         await bot.download_file_by_id(file_id=fil_id, destination=f'{msg.from_user.id}.pdf')
         await msg.answer('👌 File qabul qilindi', reply_markup=convertor)
         await state.finish()
+        time.sleep(3)
     else:
         await msg.answer('🚫 <b>Faqat PDF filelar qabul qilinadi</b>', reply_markup=back_button, parse_mode='HTML')
         await msg.answer(' 📃 Pdf file yuboring')
@@ -48,10 +51,12 @@ async def converter_to_word(msg: types.Message):
         cv = Converter(file_path)
         cv.convert(f'{file_name_1}.docx')
         cv.close()
+        time.sleep(2)
         docx_file = f'{file_name_1}.docx'
         with open(docx_file, 'rb') as file:
             await msg.answer_document(document=file, caption=file_name_1, reply_markup=ReplyKeyboardRemove())
             await msg.answer('✏️ <b>File o\'zgartirldi</b>', reply_markup=convertor_btn)
+            time.sleep(1)
         os.remove(file_path)
         os.remove(docx_file)
     except:

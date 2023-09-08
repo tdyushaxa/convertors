@@ -1,4 +1,6 @@
 import os
+import time
+
 from aiogram import types
 from aiogram.dispatcher import FSMContext
 from aiogram.dispatcher.filters import Text
@@ -15,6 +17,7 @@ async def bot_start(message: types.Message):
     await message.answer('📃 <b>Excel file yuboring...</b> ', reply_markup=ReplyKeyboardRemove(), parse_mode='HTML')
     await message.answer(text='Bot hozirgi holatida faqat 📃 Document qabul qiladi !', reply_markup=back_button,
                          parse_mode='HTML')
+    time.sleep(1)
     await Excel_to_pdf_state.file.set()
 
 
@@ -25,6 +28,7 @@ async def set_data(msg: types.Message, state: FSMContext):
     file_name_5 = file_name.split('.')[0]
     if file_name.endswith('.xlsx') or file_name.endswith('.xls'):
         fil_id = msg.document.file_id
+        time.sleep(5)
         await bot.download_file_by_id(file_id=fil_id, destination=f'{msg.from_user.id}.xlsx')
         await msg.answer('👌 File qabul qilindi', reply_markup=ex_pdf_conv)
         await state.finish()
@@ -42,6 +46,7 @@ async def converter_to_word(msg: types.Message):
     try:
         output = excel_to_pdf(excel_file, pdf_file)
         with open(pdf_file, 'rb') as file:
+            time.sleep(3)
             await msg.answer_document(file, caption=file_name_5, reply_markup=ReplyKeyboardRemove())
     except:
         await msg.answer('🙅‍♂️ Xatolik yuz berdi file bilan  qaytadan urunib ko\'ring', reply_markup=convertor_btn)
