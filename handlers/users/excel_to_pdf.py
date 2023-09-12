@@ -43,13 +43,15 @@ async def set_data(msg: types.Message, state: FSMContext):
 async def converter_to_word(msg: types.Message):
     excel_file = f'{msg.from_user.id}.xlsx'
     pdf_file = f'{msg.from_user.id}.pdf'
-    try:
-        output = excel_to_pdf(excel_file, pdf_file)
-        with open(pdf_file, 'rb') as file:
-            time.sleep(3)
-            await msg.answer_document(file, caption=file_name_5, reply_markup=ReplyKeyboardRemove())
-    except:
-        await msg.answer('🙅‍♂️ Xatolik yuz berdi file bilan  qaytadan urunib ko\'ring', reply_markup=convertor_btn)
+    # try:
+    output = excel_to_pdf(excel_file, pdf_file)
+    with open(pdf_file, 'rb') as file:
+        time.sleep(3)
+        await msg.answer_document(file, caption=file_name_5, reply_markup=ReplyKeyboardRemove())
+    # except:
+    # await msg.answer('🙅‍♂️ Xatolik yuz berdi file bilan  qaytadan urunib ko\'ring', reply_markup=convertor_btn)
+
+
     try:
         os.remove(excel_file)
         os.remove(pdf_file)
